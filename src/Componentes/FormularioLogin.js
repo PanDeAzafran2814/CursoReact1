@@ -1,21 +1,39 @@
 import React, {useState} from 'react';
 
-const FormularioLogin = () => {
+const FormularioLogin = (props) => {
+    console.log(props);
     const [User, CambiarUser] = useState('');
     const [Pass, CambiarPass] = useState('');
 
-    const onChangeUser = (evento) =>{
+  /*  const onChangeUser = (evento) =>{
         CambiarUser(evento.target.value)
     }
 
     const onChangePass = (evento) =>{
         CambiarPass(evento.target.value)
+    }*/
+
+    const Onchange = (evento) =>{
+        if(evento.target.name==="User"){
+            CambiarUser(evento.target.value)
+        }else if(evento.target.name ==="Pass"){
+            CambiarPass(evento.target.value)
+        }
+    }
+
+    const OnSubmit = (e) => {
+        e.preventDefault();
+        if(User === "pancho" && Pass === "123"){
+            props.cambiarEstadoSesion(true);
+        }else{
+            alert("Error al validar sus credenciales");
+            CambiarUser('');
+            CambiarPass('');
+        }
     }
 
     return (  
-        <form >
-            <p>Usuario: {User}</p>
-            <p>Contrasena: {Pass}</p>
+        <form onSubmit={OnSubmit}>
             <div>
                 <label htmlFor="User">Usuario</label>
                 <input
@@ -23,7 +41,7 @@ const FormularioLogin = () => {
                  name="User" 
                  id="User"
                  value={User}
-                 onChange={onChangeUser}
+                 onChange={Onchange}
                  />
             </div>
             <div>
@@ -33,7 +51,7 @@ const FormularioLogin = () => {
                 name="Pass" 
                 id="Pass"
                 value={Pass}
-                onChange={onChangePass}
+                onChange={Onchange}
                 />
             </div>
             <button type="submit">Iniciar sesion</button>
