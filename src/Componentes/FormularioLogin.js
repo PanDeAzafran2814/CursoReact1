@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import styles from './FormUserCss.module.css';
+import Boton from './Elementos/Boton';
 
 const FormularioLogin = (props) => {
     console.log(props);
@@ -33,28 +35,31 @@ const FormularioLogin = (props) => {
     }
 
     return (  
-        <form onSubmit={OnSubmit}>
+        <form className={styles.formulario} onSubmit={OnSubmit}>
+                <h1>No has iniciado sesion</h1>
             <div>
-                <label htmlFor="User">Usuario</label>
+                <label htmlFor="User" className={styles.label}>Usuario</label>
                 <input
                  type="text" 
                  name="User" 
                  id="User"
                  value={User}
                  onChange={Onchange}
+                 className={styles.input}
                  />
             </div>
             <div>
-                <label htmlFor="Pass">password</label>
+                <label htmlFor="Pass" className={styles.label}>password</label>
                 <input 
                 type="password" 
                 name="Pass" 
                 id="Pass"
                 value={Pass}
                 onChange={Onchange}
+                className={styles.input}
                 />
             </div>
-            <button type="submit">Iniciar sesion</button>
+            <Boton type="submit">Iniciar sesion</Boton>
         </form>
     );
 }

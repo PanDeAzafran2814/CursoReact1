@@ -4,26 +4,25 @@ import FormularioLogin from './Componentes/FormularioLogin';
 import Usuario from './Componentes/Usuario';
 import ContadorClass from './Componentes/ContadorClass';
 import ContadorFuncional from './Componentes/ContadorFuncional';
+import './index.css';
+import Boton from './Componentes/Elementos/Boton';
 
 const App = () => {
   const [sesion, cambiarEstadoSesion]=useState(true);
   return (
-    <> 
+    <div className='contenedor'> 
       {sesion === true ? 
         <>
         <Usuario/>
-        {/*<ContadorFuncional cantidadAIncrementar={100} cantidadADisminuir={20}/>*/}
-        {<ContadorClass cantidadAIncrementar={10} cantidadADisminuir={2}/>}
-        <button onClick={() => cambiarEstadoSesion(false)}>Cerrar sesion</button>
+        <ContadorFuncional cantidadAIncrementar={100} cantidadADisminuir={20}/>
+        <Boton onClick={() => cambiarEstadoSesion(false)}>Cerrar sesion</Boton>
         </>
       : 
         <>
-        <h1>No has iniciado sesion</h1>
         <FormularioLogin cambiarEstadoSesion={cambiarEstadoSesion}/>
-        {/*<button onClick={() => cambiarEstadoSesion(true)}>Iniciar sesion</button>*/}
         </>
         } 
-    </>
+    </div>
     
   );
 };
